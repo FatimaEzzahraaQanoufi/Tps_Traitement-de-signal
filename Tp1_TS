@@ -1,0 +1,52 @@
+***** Rapport tp1: Traitement de signal *****
+***** Analyse spectrale d’un signal: Transformée de Fourier discrète *****
+
+        *** Le Code: ***
+       
+clear all
+close all
+clc
+
+fe = 1e4;
+te = 1/fe;
+N = 10000; 
+
+t = (0:N-1)*te; 
+x = 1.2*cos(2*pi*440*t+1.2)+3*cos(2*pi*550*t)+0.6*cos(2*pi*2500*t);
+% plot(t,x,'.');
+% 
+f =(0:N-1)*(fe/N); 
+y = fft(x); 
+%sans decalage
+% plot(f,abs(y));
+
+fshift = (-N/2:N/2-1)*(fe/N)
+%decalage
+% plot(fshift,fftshift(2*abs(y)/N))
+
+bruit = 5*randn(size(x));
+% plot(bruit)
+
+xbruit = x+bruit;
+
+ybruit = fft(xbruit);
+%plot(fshift,fftshift(abs(ybruit)));
+
+
+subplot(3,2,1)
+plot(t,x,'.');
+subplot(3,2,2)
+plot(fshift,fftshift(2*abs(y)/N))
+subplot(3,2,3)
+plot(t,xbruit)
+subplot(3,2,4)
+plot(fshift,fftshift(abs(ybruit)));
+subplot(3,2,5)
+bruit = 50*randn(size(x));
+% plot(bruit)
+xbruit = x+bruit;
+plot(t,xbruit)
+subplot(3,2,6)
+ybruit = fft(xbruit);
+plot(fshift,fftshift(abs(ybruit)));
+            
