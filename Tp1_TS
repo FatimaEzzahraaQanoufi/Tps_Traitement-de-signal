@@ -1,8 +1,11 @@
 ***** Rapport tp1: Traitement de signal *****
 ***** Analyse spectrale d’un signal: Transformée de Fourier discrète *****
 
-        *** Le Code: ***
-       
+
+  +++ Représentation temporelle et fréquentielle +++
+  
+        *** Le Code: ***                                                                       
+  
 clear all
 close all
 clc
@@ -49,4 +52,69 @@ plot(t,xbruit)
 subplot(3,2,6)
 ybruit = fft(xbruit);
 plot(fshift,fftshift(abs(ybruit)));
-            
+           
+           
+           ***Explication: ***
+           
+Ce code génère un signal x qui consiste en la somme de trois ondes cosinusoïdales de fréquences 440 Hz, 
+550 Hz et 2500 Hz. Le signal est échantillonné à un taux de 10 000 échantillons par seconde pendant une durée de 10 secondes,
+ce qui donne un total de 10 000 échantillons. La série temporelle du signal généré est tracée dans le premier sous-graphe.
+
+La Transformée de Fourier Rapide (FFT) du signal est alors calculée, et le spectre de fréquence obtenu est tracé dans le deuxième sous-graphe.
+La FFT est un algorithme de calcul qui permet de déterminer le spectre de fréquence d'un signal.
+
+Le code ajoute ensuite du bruit gaussien au signal et trace le signal bruité dans le troisième sous-graphe.
+La FFT du signal bruité est également calculée et tracée dans le quatrième sous-graphe.
+
+Dans les cinquième et sixième sous-graphes, le même processus est répété, mais avec un niveau de bruit gaussien plus élevé ajouté au signal.
+
+Les commandes clear all, close all et clc sont utilisées pour vider l'espace de travail, fermer toutes les figures et effacer la fenêtre de commande,
+respectivement. La variable fe est la fréquence d'échantillonnage, te est l'intervalle d'échantillonnage et N est le nombre d'échantillons.
+La variable t est un vecteur temps pour la durée du signal et f est un vecteur des fréquences correspondantes pour la FFT.
+La variable fshift est utilisée pour décaler le spectre de fréquence de manière à ce qu'il soit centré sur la fréquence zéro. 
+La variable bruit est un vecteur de bruit gaussien avec une moyenne de zéro et une écart-type de 5.
+La variable xbruit est le signal original avec du bruit gaussien ajouté. La variable ybruit est la FFT du signal bruité.
+
+
++++Analyse fréquentielle du chant du rorqual bleu+++
+
+         ***Le Code: ***
+         
+clear all
+close all
+clc
+
+
+[x,fs]= audioread("bluewhale.au"); 
+chant = x(2.45e4:3.10e4); 
+
+N = length(chant); 
+ts = 1/fs; 
+
+t = (0:N-1)*(10*ts); 
+plot(t,chant);
+
+dsp_chant =  (abs(fft(chant)).^2)/N;
+f = (0:floor(N/2))*(fs/N)/10;
+
+plot(f,dsp_chant(1:floor(N/2)+1))
+% sound(x,fs)   //ecouter le son
+
+[xx,fss]= audioread("hii.mp3"); 
+sound(xs,fss)
+           
+           ***Explication: ***
+           
+Ce code lit un fichier audio appelé "bluewhale.au" et enregistre les données dans le tableau x et la fréquence d'échantillonnage dans la variable fs. 
+Il extrait alors une section des données audio correspondant à un intervalle de temps de 2,45 secondes à 3,1 secondes,
+et l'enregistre dans le tableau chant.
+
+La longueur des données audio dans chant est enregistrée dans la variable N, et l'intervalle d'échantillonnage est calculé comme ts = 1/fs. 
+Un vecteur temps t est alors créé pour la durée des données audio dans chant.
+La série temporelle des données audio est tracée à l'aide de la fonction plot.
+
+Le spectre de puissance discret des données audio est alors calculé à l'aide de la FFT et élevé au carré, puis normalisé par le nombre d'échantillons N.
+Les fréquences correspondant au spectre de puissance sont calculées sous la forme d'un vecteur f et tracées à l'aide de la fonction plot.
+
+Le code lit ensuite un autre fichier audio appelé "hii.mp3" et enregistre les données dans le tableau xx et la fréquence d'échantillonnage 
+dans la variable fss. Les données audio sont jouées à l'aide de la fonction sound.
