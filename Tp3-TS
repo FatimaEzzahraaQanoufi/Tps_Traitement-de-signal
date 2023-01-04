@@ -157,12 +157,7 @@ subplot(4,3,11)
 plot(fshift,fftshift(abs(fft(ecg_filtre_bas_temp))));
 legend("spectre du signal filtrer")
 
-
-
-
-
 %%
-
 
 % subplot(1,3,1)
 % plot(f,filtre_pass_Haut,"Linewidth",1.5)
@@ -176,6 +171,8 @@ legend("spectre du signal filtrer")
 % 
 % plot(t,bruit,'linewidth',1);
 % legend("bruit")
+
+
 
 
       ***Explication: ***
