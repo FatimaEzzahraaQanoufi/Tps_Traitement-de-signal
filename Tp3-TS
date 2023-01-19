@@ -177,12 +177,14 @@ legend("spectre du signal filtrer")
 
       ***Explication: ***
       
-      
-On commence par déclarer quelques variables, puis charge un fichier de données nommé 'ecg.mat'. 
-Ensuite, on définit des variables 'fe' (fréquence d'échantillonnage) et 'N' (nombre de points de données dans le signal). 
-'t' est un vecteur de temps qui est créé en utilisant la fréquence d'échantillonnage et le nombre de points de données. 
-'f' est un vecteur de fréquences qui est créé de la même manière.
+Ce code est utilisé pour filtrer un signal d'électrocardiogramme (ECG). Il charge un signal ECG à partir d'un fichier nommé "ecg.mat"
+et applique ensuite plusieurs opérations de filtrage au signal en utilisant la transformée de Fourier rapide (FFT).
 
-Le code effectue ensuite une transformation de Fourier rapide sur le signal ECG, puis utilise un filtre passe-haut pour enlever les basses fréquences.
-Il utilise également un filtre passe-bas pour enlever les hautes fréquences et un autre filtre passe-haut pour enlever les interférences de basse fréquence. 
-Enfin, il calcule les bruits de haute
+Il commence par appliquer un filtre passe-haut au signal ECG, avec une fréquence de coupure de 0,5 Hz pour supprimer le bruit de basse fréquence. 
+Puis, un deuxième filtre est utilisé pour supprimer le bruit de haute fréquence avec une fréquence de coupure de 50 Hz. 
+Enfin, un troisième filtre est utilisé pour supprimer le bruit de fréquence entre 40 et 50 Hz.
+
+Après chaque opération de filtrage, il utilise la transformée de Fourier inverse (IFFT) pour transformer le signal filtré de nouveau dans le domaine temporel. 
+Il calcule également le bruit résiduel après chaque opération de filtrage, ce qui peut être utilisé pour évaluer l'efficacité du filtrage.
+
+L'objectif global est de supprimer le bruit du signal ECG et obtenir un signal ECG sans bruit.
