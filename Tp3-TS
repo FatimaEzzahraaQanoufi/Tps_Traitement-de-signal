@@ -177,14 +177,14 @@ legend("spectre du signal filtrer")
 
       ***Explication: ***
       
-Ce code est utilisé pour filtrer un signal d'électrocardiogramme (ECG). Il charge un signal ECG à partir d'un fichier nommé "ecg.mat"
-et applique ensuite plusieurs opérations de filtrage au signal en utilisant la transformée de Fourier rapide (FFT).
-
-Il commence par appliquer un filtre passe-haut au signal ECG, avec une fréquence de coupure de 0,5 Hz pour supprimer le bruit de basse fréquence. 
-Puis, un deuxième filtre est utilisé pour supprimer le bruit de haute fréquence avec une fréquence de coupure de 50 Hz. 
-Enfin, un troisième filtre est utilisé pour supprimer le bruit de fréquence entre 40 et 50 Hz.
-
-Après chaque opération de filtrage, il utilise la transformée de Fourier inverse (IFFT) pour transformer le signal filtré de nouveau dans le domaine temporel. 
-Il calcule également le bruit résiduel après chaque opération de filtrage, ce qui peut être utilisé pour évaluer l'efficacité du filtrage.
-
-L'objectif global est de supprimer le bruit du signal ECG et obtenir un signal ECG sans bruit.
+Ce code utilise la transformée de Fourier pour filtrer un signal ECG (electrocardiogramme) en utilisant deux filtres différents. 
+Le premier filtre est un filtre passe-haut qui permet de supprimer les fréquences inférieures à une certaine fréquence de coupure (fc) pour ne conserver 
+que les fréquences plus élevées. Le second filtre est un filtre passe-bas qui permet de supprimer les fréquences supérieures à une autre fréquence 
+de coupure (fc0) pour ne conserver que les fréquences plus basses. Les deux filtres sont appliqués sur le signal ECG pour produire deux signaux filtrés 
+différents, avec l'objectif de supprimer le bruit de basse fréquence et le bruit d'interférence. Les signaux filtrés sont ensuite restitués
+en utilisant l'inverse de la transformée de Fourier pour obtenir les signaux temporels correspondants.
+On ajoute une nouvelle étape de filtrage pour supprimer les fréquences hautes du signal filtré d'interférence en utilisant un filtre passe-bas avec une 
+fréquence de coupure (fc1).
+Le signal filtré est ensuite restitué en utilisant l'inverse de la transformée de Fourier. Le signal filtré final est comparé au signal d'origine 
+pour obtenir un bruit haute fréquence. Enfin, le code affiche des graphiques pour visualiser les différents signaux et leurs spectres,
+ainsi que les filtres utilisés pour les comparer.
