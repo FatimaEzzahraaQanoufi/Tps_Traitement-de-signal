@@ -1,0 +1,68 @@
+
+      ***** Tp4: Fitrage Analogique *****
+      
+          *** Filtrage et diagramme de Bode ***
+
+clear all
+close all
+clc
+
+
+te = 0.0001;
+fe = 1/te;
+t = 0:te:5-te;
+N = length(t);
+
+f1 = 500; f2 = 400; f3 = 50;
+x = sin(2*pi*f1*t) + sin(2*pi*f2*t) + sin(2*pi*f3*t);
+
+figure
+ subplot(3,1,1)
+ plot(t,x)
+ title('Signal x(t)')
+
+y = fft(x);
+f = (0:N-1)*(fe/N);
+fshift =(-N/2:N/2-1)*(fe/N);
+
+ subplot(3,1,2)
+
+plot(fshift,fftshift(abs(y)))
+title('Transformée de Fourrier de x(t)')
+
+       *** Explication: ***
+       
+Ce code génère un signal x(t) qui est la somme de trois sinusoïdes de fréquences différentes (f1, f2, f3). 
+Il utilise ensuite la transformée de Fourier pour calculer la transformée de Fourrier de ce signal (y) 
+et enfin il affiche le signal x(t) dans un graphique avec l'axe des temps et le graphique de la transformée de Fourier avec l'axe des fréquences.
+
+
+    *** LE CODE: ***
+    
+    % Définir les constantes
+K = 1;
+wc = 50;
+
+% Définir les valeurs de w pour lesquelles tracer H(f)
+w = linspace(0,100,1000);
+
+% Calculer H(f)
+H = (K*j*w/wc) ./ (1 + j*w./wc);
+
+% Tracer le module de H(f)
+plot(w, abs(H));
+xlabel('Pulsation (rad/s)');
+ylabel('Module de H(f)');
+title('Diagramme de Bode du filtre passe-haut de premier ordre');
+
+     *** Explication: ***
+     
+nous définissons les constantes K et wc. K est égal à 1, ce qui signifie que le gain du filtre est égal à 1 (aucune amplification ou atténuation du signal).
+wc est égal à 50 rad/s, ce qui signifie que la fréquence de coupure du filtre est de 50 rad/s.
+Ensuite, nous définissons les valeurs de w pour lesquelles nous allons tracer H(f). Nous utilisons la fonction linspace pour générer un vecteur 
+de 1000 valeurs de w allant de 0 à 100 rad/s.
+Ensuite, nous calculons H(f) en utilisant la formule donnée dans la question initiale.
+Enfin, nous tracons le module de H(f) en utilisant la fonction plot. Nous utilisons la fonction abs pour calculer le module de H(f) avant de le tracer. 
+Nous utilisons également les fonctions xlabel, ylabel et title pour ajouter des étiquettes à l'axe des abscisses, à l'axe des ordonnées et au titre du 
+graphique respectivement
+     
