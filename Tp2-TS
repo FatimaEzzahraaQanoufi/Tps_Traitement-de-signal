@@ -59,15 +59,3 @@ Le signal audio est ensuite segmenté en quatre parties, qui sont stockées dans
 Les segments audio sont joués à l'aide de la fonction sound. Enfin, la phrase est réarrangée en concaténant ces segments dans l'ordre seg1, seg4, seg3 
 et seg2, et le son est joué à l'aide de la fonction sound.
 
-
-
-   +++ Synthèse et analyse spectrale d’une gamme de musique +++
-   
-     *** Le Code: ***
-     
-     
-     *** Explication: ***
-
-
-
-
