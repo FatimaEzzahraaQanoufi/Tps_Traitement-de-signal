@@ -155,5 +155,6 @@ de l'IFFT (transformée de Fourier inverse) et tracé.
 
 La fonction de transfert utilisée est une fonction complexe connue sous le nom de filtre de Butterworth, caractérisée par un paramètre k et une fréquence 
 de coupure fc. Le filtre est conçu pour réduire les fréquences au-dessus de la fréquence de coupure fc. La forme du filtre est h = k./(1+1j*(f/fc).^100), 
-où f est la fréquence et j est l'unité imaginaire. Ce filtre est également un filtre passe-haut, ce qui signifie qu'il permet aux hautes fréquences de passer et réduit les basses fréquences.
+où f est la fréquence et j est l'unité imaginaire. Ce filtre est également un filtre passe-haut, ce qui signifie qu'il permet aux hautes fréquences de passer 
+et réduit les basses fréquences.
 Le signal filtré est ensuite tracé dans le domaine fréquentiel.
